@@ -15,10 +15,7 @@
       // IMPORTANT: Replace with your parent page origin for security!
       const trustedOrigin = "https://boq-poc-securityredesign.crm6.dynamics.com";
 
-      if (event.origin !== trustedOrigin) {
-        console.warn("Blocked message from untrusted origin:", event.origin);
-        return;
-      }
+      
 
       if (event.data && event.data.idToken) {
         console.log("Received ID Token:", event.data.idToken);
