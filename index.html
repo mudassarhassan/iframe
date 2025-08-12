@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Iframe Token Receiver</title>
+</head>
+<body>
+    <h2>Iframe App</h2>
+    <p id="status">Waiting for tokens...</p>
+
+    <script>
+        window.addEventListener("message", (event) => {
+            if (event.origin !== "https://your-dynamics-domain.com") return; // security check
+
+            if (event.data.type === "authTokens") {
+                const { idToken, idTokenClaims, accessToken } = event.data;
+                document.getElementById("status").textContent =
+                    `ID Token OID: ${idTokenClaims?.oid || "N/A"}`;
+
+                console.log("Full ID Token:", idToken);
+                console.log("ID Token Claims:", idTokenClaims);
+                console.log("Access Token:", accessToken);
+            }
+        });
+    </script>
+</body>
+</html>
