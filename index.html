@@ -5,23 +5,40 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Iframe Token Receiver</title>
+  <style>
+    pre {
+      white-space: pre-wrap;       /* Wrap long lines */
+      word-wrap: break-word;
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+      max-height: 300px;
+      overflow-y: auto;
+      font-family: monospace;
+    }
+  </style>
 </head>
 <body>
   <h2>Iframe Token Receiver</h2>
   <div id="status">Waiting for token...</div>
-  <div id="token"></div>
+  <h3>Received ID Token:</h3>
+  <pre id="tokenDisplay">No token received yet.</pre>
+
   <script>
     window.addEventListener("message", event => {
-      // IMPORTANT: Replace with your parent page origin for security!
       const trustedOrigin = "https://boq-poc-securityredesign.crm6.dynamics.com";
 
-      
+      console.log("Message received from origin:", event.origin);
+
+      if (event.origin !== trustedOrigin) {
+        console.warn("Blocked message from untrusted origin:", event.origin);
+        //return;
+      }
 
       if (event.data && event.data.idToken) {
         console.log("Received ID Token:", event.data.idToken);
-        document.getElementById("status").innerText = "ID Token received! Check console.";
-        document.getElementById("status").innerText = event.data.idToken;
-        // You can now use the token to authenticate API calls, display user info, etc.
+        document.getElementById("status").innerText = "ID Token received!";
+        document.getElementById("tokenDisplay").textContent = event.data.idToken;
       }
     });
   </script>
