@@ -13,7 +13,7 @@
   <script>
     window.addEventListener("message", event => {
       // IMPORTANT: Replace with your parent page origin for security!
-      const trustedOrigin = "https://boq-poc-securityredesign.crm6.dynamics.com/";
+      const trustedOrigin = "https://boq-poc-securityredesign.crm6.dynamics.com";
 
       if (event.origin !== trustedOrigin) {
         console.warn("Blocked message from untrusted origin:", event.origin);
