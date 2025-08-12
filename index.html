@@ -9,7 +9,7 @@
 
     <script>
         window.addEventListener("message", (event) => {
-            if (event.origin !== "https://your-dynamics-domain.com") return; // security check
+            if (event.origin !== "https://boq-poc-securityredesign.crm6.dynamics.com/main.aspx?webresourceName=boq_ParentTokenHost.html") return; // security check
 
             if (event.data.type === "authTokens") {
                 const { idToken, idTokenClaims, accessToken } = event.data;
