@@ -32,7 +32,7 @@
 
       if (event.origin !== trustedOrigin) {
         console.warn("Blocked message from untrusted origin:", event.origin);
-        //return;
+        return;
       }
 
       if (event.data && event.data.idToken) {
